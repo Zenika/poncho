@@ -1,0 +1,113 @@
+- id: '1730308674654'
+  alias: Temperature supérieur Réunion
+  description: ''
+  triggers:
+  - type: temperature
+    device_id: f8c6d6c4c45d47e84806ba8a93bbf314
+    entity_id: 0061fce95938dda8069b520c8db5ac71
+    domain: sensor
+    trigger: device
+    above: 20
+  conditions: []
+  actions:
+  - action: notify.zenika
+    data:
+      message: 'Il fait trop chaud dans la salle Réunion, vite éteignons le chauffage
+        ! '
+      title: Réunion
+  mode: single
+- id: '1730308777115'
+  alias: Temperature inférieur salon
+  description: ''
+  triggers:
+  - type: temperature
+    device_id: 1c7cfd1efcfd0a2115b384c44d153b35
+    entity_id: a2dd23a323dfb8e40374b84e8f1aae02
+    domain: sensor
+    trigger: device
+    below: 18
+  conditions: []
+  actions:
+  - action: notify.zenika
+    data:
+      message: 'Il fait moins de 18°C dans le salon. Ce ne sont pas des conditions
+        de travail idéales. '
+      title: Salon
+  mode: single
+- id: '1731492198111'
+  alias: Température supérieur salon
+  description: ''
+  triggers:
+  - type: temperature
+    device_id: 1c7cfd1efcfd0a2115b384c44d153b35
+    entity_id: a2dd23a323dfb8e40374b84e8f1aae02
+    domain: sensor
+    trigger: device
+    above: 20
+  conditions: []
+  actions:
+  - action: notify.zenika
+    data:
+      message: 'Il fait trop chaud dans le salon. Réajustez le chauffage s''il vous
+        plaît. '
+      title: Salon
+  mode: single
+- id: '1731492407861'
+  alias: Température inférieure Réunion
+  description: ''
+  triggers:
+  - type: temperature
+    device_id: f8c6d6c4c45d47e84806ba8a93bbf314
+    entity_id: 0061fce95938dda8069b520c8db5ac71
+    domain: sensor
+    trigger: device
+    below: 18
+  conditions: []
+  actions:
+  - action: notify.zenika
+    data:
+      message: 'La température est inférieure à 18°C dans la salle Réunion, j''espère
+        que personne n''est en train d''y travailler. '
+      title: Réunion
+  mode: single
+- id: '1731695652928'
+  alias: Salon température normale
+  description: ''
+  triggers:
+  - type: temperature
+    device_id: 1c7cfd1efcfd0a2115b384c44d153b35
+    entity_id: a2dd23a323dfb8e40374b84e8f1aae02
+    domain: sensor
+    trigger: device
+    above: 18
+    below: 20
+  conditions: []
+  actions:
+  - action: notify.zenika
+    data:
+      message: 'La température du salon est revene à la normale. Merci. '
+      title: Salon
+  mode: single
+- id: '1731695858819'
+  alias: Perte de signal
+  description: ''
+  triggers:
+  - device_id: 1c7cfd1efcfd0a2115b384c44d153b35
+    domain: zha
+    type: device_offline
+    subtype: device_offline
+    metadata: {}
+    trigger: device
+  - device_id: f8c6d6c4c45d47e84806ba8a93bbf314
+    domain: zha
+    type: device_offline
+    subtype: device_offline
+    trigger: device
+  conditions: []
+  actions:
+  - action: notify.zenika
+    metadata: {}
+    data:
+      message: J'ai perdu une des sondes. Le déclenchement va être erroné
+      title: Sondes
+  mode: single
